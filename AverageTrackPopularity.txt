@@ -1,0 +1,11 @@
+Album Title,Album Popularity,Average Track Popularity
+Certified Lover Boy,95,79.43
+Dark Lane Demo Tapes,79,65.5
+Care Package,72,57.47
+So Far Gone,42,22.89
+Scorpion,85,65.32
+More Life,83,64.77
+Views,44,66.15
+What A Time To Be Alive,77,29.36
+If You're Reading This It's Too Late,47,62.53
+Nothing Was The Same,68,58.46
