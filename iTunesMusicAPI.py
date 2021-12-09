@@ -11,10 +11,10 @@ import matplotlib.pyplot as plt
 from pprint import pprint
 
 def getAlbumfeatues(artist):
-    base_url = f"https://itunes.apple.com/search?term={artist}"
+    base_url = f"https://itunes.apple.com/search?term={artist}&entity=song&attribute=allArtistTerm&limit=89"
     response = requests.get(url=base_url)
     json_response = response.json()
-    print(json_response)
+    return json_response
 
 #gets artists from the title of a song
 def cleanName(name):
@@ -26,8 +26,8 @@ def cleanName(name):
 
 #get all artists from a song
 def getArtists(song):
-    ret = set(cleanName(song['artistsName']))
-    others = song(['trackName'])
+    ret = set(cleanName(song['artistName']))
+    others = song['trackName']
     if 'feat.' in others:
         for name in cleanName(others.split('feat.')[1]):
             ret.add(name)
@@ -43,11 +43,12 @@ def getData(json):
         a = getArtists(song)
         for artist in a:
             if artist not in artists:
-                artists[artists] = 0
+                artists[artist] = 0
             artists[artist] += 1
         
         # GET SONG / SONG ID
-        songIDs[song['trackName']] = song['trackId']
+        if "feat." in song['trackName'] and 'Drake' not in song['trackName']:
+            songIDs[song['trackName']] = song['trackId']
     
     del artists['Drake'] # making sure it's not counting Drake since it's his songs
 
